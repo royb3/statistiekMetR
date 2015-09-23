@@ -1,0 +1,149 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Title</title>
+</head>
+
+<body>
+
+<h1>3.1 </h1>
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl com">#De kans dat een goedgekeurde ook echt goed is.</span>
+<span class="hl std">a</span> <span class="hl kwb">&lt;-</span> <span class="hl num">1</span> <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">/</span><span class="hl num">100</span>
+<span class="hl com">#De kans dat een goedgekeurde toch niet goed is.</span>
+<span class="hl std">b</span> <span class="hl kwb">&lt;-</span> <span class="hl num">1</span><span class="hl opt">/</span><span class="hl num">100</span>
+<span class="hl com">#De kans dat een afgekeurde slecht is</span>
+<span class="hl std">c</span> <span class="hl kwb">&lt;-</span> <span class="hl num">1</span> <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">/</span><span class="hl num">100</span>
+<span class="hl com">#de kans dat een afgekeurde toch goed is</span>
+<span class="hl std">d</span> <span class="hl kwb">&lt;-</span> <span class="hl num">1</span><span class="hl opt">/</span><span class="hl num">100</span>
+<span class="hl com">#De opseltom van alle waardes bij elkaar.</span>
+<span class="hl std">tot</span> <span class="hl kwb">=</span> <span class="hl kwd">sum</span><span class="hl std">(a, b, c, d)</span>
+</pre></div>
+</div></div>
+<h2>resultaat</h2>
+
+<table border='1'>
+  <tr>
+    <th></th>
+    <th>Werkt</th>
+    <th>Werkt niet</th>
+  </tr>
+  <tr>
+    <th>Goedgekeurd</th>
+    <td><code class="knitr inline">0.99</code></td>
+    <td><code class="knitr inline">0.01</code></td>
+  </tr>
+  <tr>
+    <th>Afgekeurd</th>
+    <td><code class="knitr inline">0.01</code></td>
+    <td><code class="knitr inline">0.99</code></td>
+  </tr>
+</table>
+<p>De bovenstaande kansen bij elkaar opgetelt leveren <code class="knitr inline">2</code> op</p>
+<h1>3.2</h1>
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">calculateBayesProductGood</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">p.productBroken</span><span class="hl std">,</span> <span class="hl kwc">p.testIsRight</span><span class="hl std">) {</span>
+    <span class="hl std">p.testIsWrong</span> <span class="hl kwb">=</span> <span class="hl num">1</span><span class="hl opt">-</span><span class="hl std">p.testIsRight</span>
+    <span class="hl std">p.productGood</span> <span class="hl kwb">&lt;-</span> <span class="hl num">1</span><span class="hl opt">-</span><span class="hl std">p.productBroken</span>
+    <span class="hl std">p.badProductSold</span> <span class="hl kwb">&lt;-</span> <span class="hl std">(p.testIsWrong</span> <span class="hl opt">*</span> <span class="hl std">p.productBroken)</span> <span class="hl opt">/</span> <span class="hl std">((p.productBroken</span> <span class="hl opt">*</span> <span class="hl std">p.testIsWrong)</span> <span class="hl opt">+</span> <span class="hl std">(p.productGood</span> <span class="hl opt">*</span> <span class="hl std">p.testIsRight))</span>
+    <span class="hl kwd">return</span> <span class="hl std">(p.badProductSold)</span>
+  <span class="hl std">}</span>
+  <span class="hl std">p.productBroken</span> <span class="hl kwb">&lt;-</span> <span class="hl num">1</span><span class="hl opt">/</span><span class="hl num">10</span><span class="hl opt">^</span><span class="hl num">3</span>
+  <span class="hl kwd">print</span><span class="hl std">(</span><span class="hl kwd">calculateBayesProductGood</span><span class="hl std">(p.productBroken, a))</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 1.011102e-05
+</pre></div>
+<div class="source"><pre class="knitr r">  <span class="hl std">productionQualitySequence</span> <span class="hl kwb">=</span> <span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl num">0.995</span><span class="hl std">,</span> <span class="hl num">0.9999</span><span class="hl std">,</span> <span class="hl kwc">by</span> <span class="hl std">=</span> <span class="hl num">.0001</span><span class="hl std">)</span>
+  <span class="hl std">soldBadProducts</span> <span class="hl kwb">=</span> <span class="hl kwd">array</span><span class="hl std">()</span>
+  <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl num">0</span>
+  <span class="hl kwa">for</span><span class="hl std">(quality</span> <span class="hl kwa">in</span> <span class="hl std">productionQualitySequence) {</span>
+    <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl std">i</span> <span class="hl opt">+</span> <span class="hl num">1</span>
+    <span class="hl std">soldBadProducts[i]</span> <span class="hl kwb">=</span> <span class="hl kwd">calculateBayesProductGood</span><span class="hl std">(</span><span class="hl num">1</span> <span class="hl opt">-</span> <span class="hl std">quality, a)</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">plot</span><span class="hl std">(soldBadProducts, productionQualitySequence,</span> <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">'l'</span><span class="hl std">,</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;Kans dat het product stuk is maar wel wordt verkocht&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Kans dat het product goed van de productielijn komt&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">soldBadProducts</span> <span class="hl kwb">=</span> <span class="hl kwd">array</span><span class="hl std">()</span>
+  <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl num">0</span>
+  <span class="hl std">testQualities</span> <span class="hl kwb">=</span> <span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl std">,</span> <span class="hl num">.2</span><span class="hl std">,</span> <span class="hl kwc">by</span><span class="hl std">=</span><span class="hl num">.001</span><span class="hl std">)</span>
+  <span class="hl kwa">for</span><span class="hl std">(quality</span> <span class="hl kwa">in</span> <span class="hl std">testQualities) {</span>
+    <span class="hl std">i</span> <span class="hl kwb">=</span> <span class="hl std">i</span> <span class="hl opt">+</span> <span class="hl num">1</span>
+    <span class="hl std">soldBadProducts[i]</span> <span class="hl kwb">=</span> <span class="hl kwd">calculateBayesProductGood</span><span class="hl std">(p.productBroken, quality)</span>
+  <span class="hl std">}</span>
+  <span class="hl kwd">plot</span><span class="hl std">(soldBadProducts, testQualities,</span> <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">'l'</span><span class="hl std">,</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;Kans dat het product stuk is maar wel wordt verkocht&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span> <span class="hl std">=</span> <span class="hl str">&quot;Kans dat de test klopt.&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div></div>
+
+<h1>3.3</h1>
+<h2>Ga opnieuw uit van de kansen zoals deze oorspronkelijk in opdracht 1 zijn
+gesteld.
+Hoe slecht mag de testmachine functioneren, voordat gemiddeld ´e´en op de
+twintig doorgelaten producten toch niet blijkt te werken.
+</h2>
+<p>Hiervoor moet de test een waarschijnlijkheid hebben van .009. een promilage van 9 dus.</p>
+
+
+</body>
+</html>
+

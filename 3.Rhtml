@@ -1,0 +1,85 @@
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<h1>3.1 </h1>
+<!--begin.rcode
+#De kans dat een goedgekeurde ook echt goed is.
+a <- 1 - 1/100
+#De kans dat een goedgekeurde toch niet goed is.
+b <- 1/100
+#De kans dat een afgekeurde slecht is
+c <- 1 - 1/100
+#de kans dat een afgekeurde toch goed is
+d <- 1/100
+#De opseltom van alle waardes bij elkaar.
+tot = sum(a, b, c, d)
+end.rcode-->
+<h2>resultaat</h2>
+
+<table border='1'>
+  <tr>
+    <th></th>
+    <th>Werkt</th>
+    <th>Werkt niet</th>
+  </tr>
+  <tr>
+    <th>Goedgekeurd</th>
+    <td><!-- rinline(a) --></td>
+    <td><!-- rinline(b) --></td>
+  </tr>
+  <tr>
+    <th>Afgekeurd</th>
+    <td><!-- rinline(d) --></td>
+    <td><!-- rinline(c) --></td>
+  </tr>
+</table>
+<p>De bovenstaande kansen bij elkaar opgetelt leveren <!-- rinline(tot) --> op</p>
+<h1>3.2</h1>
+<!--begin.rcode 
+  calculateBayesProductGood <- function(p.productBroken, p.testIsRight) {
+    p.testIsWrong = 1-p.testIsRight
+    p.productGood <- 1-p.productBroken
+    p.badProductSold <- (p.testIsWrong * p.productBroken) / ((p.productBroken * p.testIsWrong) + (p.productGood * p.testIsRight))
+    return (p.badProductSold)
+  }
+  p.productBroken <- 1/10^3
+  print(calculateBayesProductGood(p.productBroken, a))
+  productionQualitySequence = seq(0.995, 0.9999, by = .0001)
+  soldBadProducts = array()
+  i = 0
+  for(quality in productionQualitySequence) {
+    i = i + 1
+    soldBadProducts[i] = calculateBayesProductGood(1 - quality, a)
+  }
+  plot(soldBadProducts, productionQualitySequence, type = 'l', xlab = "Kans dat het product stuk is maar wel wordt verkocht", ylab = "Kans dat het product goed van de productielijn komt")
+  
+end.rcode-->
+
+<!--begin.rcode
+  soldBadProducts = array()
+  i = 0
+  testQualities = seq(0, .2, by=.001)
+  for(quality in testQualities) {
+    i = i + 1
+    soldBadProducts[i] = calculateBayesProductGood(p.productBroken, quality)
+  }
+  plot(soldBadProducts, testQualities, type = 'l', xlab = "Kans dat het product stuk is maar wel wordt verkocht", ylab = "Kans dat de test klopt.")
+end.rcode-->
+
+<h1>3.3</h1>
+<h2>Ga opnieuw uit van de kansen zoals deze oorspronkelijk in opdracht 1 zijn
+gesteld.
+Hoe slecht mag de testmachine functioneren, voordat gemiddeld ´e´en op de
+twintig doorgelaten producten toch niet blijkt te werken.
+</h2>
+<p>Hiervoor moet de test een waarschijnlijkheid hebben van .009. een promilage van 9 dus.</p>
+
+
+</body>
+</html>
+
