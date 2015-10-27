@@ -1,0 +1,27 @@
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+<h1>4.1</h1>
+<!--begin.rcode
+  p.productGoed = .96
+  p.25productenGoed = 1 * p.productGoed ^25
+  p.21productenGoed = 1 * p.productGoed ^ 21
+  p.24productenGoed = 1 * p.productGoed ^ 23
+  p.tussen21en24productenGoed = p.21productenGoed - p.24productenGoed
+end.rcode-->
+<p>Kans dat een product goed is:<!-- rinline(p.productGoed) --></p>
+<p>Kans dat 25 producten goed zijn: <!-- rinline(p.25productenGoed) -->
+<p>Kans dat 1 tot en met 5 producten slecht zijn: <!-- rinline(p.tussen21en24productenGoed) --></p>
+<!--begin.rcode
+  test <- function(x) {
+    return(.04 / x)
+  }
+  hist(test(seq(1, 25, by = .1)), type = 'l', xlab = "producten", ylab="kans dat stuk", breaks = 50)
+  
+  end.rcode-->
+</body>
+</html>
