@@ -18,9 +18,9 @@ end.rcode-->
 <p>Kans dat 1 tot en met 5 producten slecht zijn: <!-- rinline(p.tussen21en24productenGoed) --></p>
 <!--begin.rcode
   test <- function(x) {
-    return(.04 / x)
+    return(.04 ^ x)
   }
-  hist(test(seq(1, 25, by = .1)), type = 'l', xlab = "producten", ylab="kans dat stuk", breaks = 50)
+  plot(test(seq(1, 25)), type = 'l', xlab = "producten", ylab="kans dat stuk")
   
   end.rcode-->
 </body>
