@@ -1,0 +1,39 @@
+<html>
+
+<head>
+<title>Title</title>
+</head>
+
+<body>
+
+<p>Het verband tussen steekproeven en een normale verdeling: als je de steekproeven groot genoeg maakt dan lijken de resultaten erg op die van een normale verdeling.</p>
+
+<p>We maken hier een verzameling aan van mensen met Geslacht, leeftijd en lengte. Deze waarden zijn willikeurig.</p>
+<ul>
+  <li>Mensen zijn man of vrouw</li>
+  <li>Mensen zijn tussen de 0 en 100 jaar.</li>
+  <li>Mensen zijn tussen 100 en 250 cm lang</li>
+</ul>
+<!--begin.rcode
+  populatie = replicate(100, c(sample(c("M", "V") ,1, replace = T),sample(0:100, 1, replace = T), sample(100:250, 1, replace = T)))
+  lengtes = as.integer(populatie[3,])
+  meanOfLengths = mean(lengtes)
+  sdOfLengths = sd(lengtes)
+  chance = pnorm(150, meanOfLengths, sdOfLengths / sqrt(25))
+  
+end.rcode-->
+
+<p>de kans dat iemand kleiner dan 150 cm steekproefgrootte = 25 is is:<!--rinline(chance)--></p>
+
+<h2>opdracht2</h2>
+<!--begin.rcode
+lampdata = c(9269, 9598, 9253, 9859, 10298, 9862, 10115, 9859, 9821, 10052, 9969, 10027, 9702, 10013, 9293)
+meanOfLampData = mean(lampdata)
+sdOfLampData = sd(lampdata)
+hist(rnorm(10000, 10000, sdOfLampData), breaks = 50)
+end.rcode-->
+<p>De lampen branden gemiddeld <!--rinline(meanOfLampData)-->Dus uit deze dataset lijkt het zo te zijn dat de lampen niet zo lang branden als de fabrikant beloofd. Maar in de grafiek zie je dat het nog niet zo vreemd is dat de steekproef toevallig net onder de beloofde waardes zit.</p>
+
+
+</body>
+</html>

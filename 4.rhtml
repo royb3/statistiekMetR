@@ -18,10 +18,24 @@ end.rcode-->
 <p>Kans dat 1 tot en met 5 producten slecht zijn: <!-- rinline(p.tussen21en24productenGoed) --></p>
 <!--begin.rcode
   test <- function(x) {
-    return(.04 ^ x)
+    return (replicate(
+      x,
+      sample(0:100, 1) < 4
+    ))
   }
-  plot(test(seq(1, 25)), type = 'l', xlab = "producten", ylab="kans dat stuk")
+  plot(test(seq(1:25)), type = 'l', xlab = "producten", ylab="kans dat stuk")
+  
+  end.rcode-->
+  
+<!--begin.rcode
+  p <- function(k) {
+    (15^k)/(factorial(k))* exp(1) ^-10
+  }
+ 
+  
+  barplot(tabulate(p(seq(0:8)), nbins = 8))
   
   end.rcode-->
 </body>
 </html>
+

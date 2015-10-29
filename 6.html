@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Title</title>
+</head>
+
+<body>
+
+<p>Het verband tussen steekproeven en een normale verdeling: als je de steekproeven groot genoeg maakt dan lijken de resultaten erg op die van een normale verdeling.</p>
+
+<p>We maken hier een verzameling aan van mensen met Geslacht, leeftijd en lengte. Deze waarden zijn willikeurig.</p>
+<ul>
+  <li>Mensen zijn man of vrouw</li>
+  <li>Mensen zijn tussen de 0 en 100 jaar.</li>
+  <li>Mensen zijn tussen 100 en 250 cm lang</li>
+</ul>
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">populatie</span> <span class="hl kwb">=</span> <span class="hl kwd">replicate</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl std">,</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl kwd">c</span><span class="hl std">(</span><span class="hl str">&quot;M&quot;</span><span class="hl std">,</span> <span class="hl str">&quot;V&quot;</span><span class="hl std">) ,</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">replace</span> <span class="hl std">= T),</span><span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl opt">:</span><span class="hl num">100</span><span class="hl std">,</span> <span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">replace</span> <span class="hl std">= T),</span> <span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">100</span><span class="hl opt">:</span><span class="hl num">250</span><span class="hl std">,</span> <span class="hl num">1</span><span class="hl std">,</span> <span class="hl kwc">replace</span> <span class="hl std">= T)))</span>
+  <span class="hl std">lengtes</span> <span class="hl kwb">=</span> <span class="hl kwd">as.integer</span><span class="hl std">(populatie[</span><span class="hl num">3</span><span class="hl std">,])</span>
+  <span class="hl std">meanOfLengths</span> <span class="hl kwb">=</span> <span class="hl kwd">mean</span><span class="hl std">(lengtes)</span>
+  <span class="hl std">sdOfLengths</span> <span class="hl kwb">=</span> <span class="hl kwd">sd</span><span class="hl std">(lengtes)</span>
+  <span class="hl std">chance</span> <span class="hl kwb">=</span> <span class="hl kwd">pnorm</span><span class="hl std">(</span><span class="hl num">150</span><span class="hl std">, meanOfLengths, sdOfLengths</span> <span class="hl opt">/</span> <span class="hl kwd">sqrt</span><span class="hl std">(</span><span class="hl num">25</span><span class="hl std">))</span>
+</pre></div>
+</div></div>
+
+<p>de kans dat iemand kleiner dan 150 cm steekproefgrootte = 25 is is:<code class="knitr inline">0.0058495</code></p>
+
+<h2>opdracht2</h2>
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">lampdata</span> <span class="hl kwb">=</span> <span class="hl kwd">c</span><span class="hl std">(</span><span class="hl num">9269</span><span class="hl std">,</span> <span class="hl num">9598</span><span class="hl std">,</span> <span class="hl num">9253</span><span class="hl std">,</span> <span class="hl num">9859</span><span class="hl std">,</span> <span class="hl num">10298</span><span class="hl std">,</span> <span class="hl num">9862</span><span class="hl std">,</span> <span class="hl num">10115</span><span class="hl std">,</span> <span class="hl num">9859</span><span class="hl std">,</span> <span class="hl num">9821</span><span class="hl std">,</span> <span class="hl num">10052</span><span class="hl std">,</span> <span class="hl num">9969</span><span class="hl std">,</span> <span class="hl num">10027</span><span class="hl std">,</span> <span class="hl num">9702</span><span class="hl std">,</span> <span class="hl num">10013</span><span class="hl std">,</span> <span class="hl num">9293</span><span class="hl std">)</span>
+<span class="hl std">meanOfLampData</span> <span class="hl kwb">=</span> <span class="hl kwd">mean</span><span class="hl std">(lampdata)</span>
+<span class="hl std">sdOfLampData</span> <span class="hl kwb">=</span> <span class="hl kwd">sd</span><span class="hl std">(lampdata)</span>
+<span class="hl kwd">hist</span><span class="hl std">(</span><span class="hl kwd">rnorm</span><span class="hl std">(</span><span class="hl num">10000</span><span class="hl std">,</span> <span class="hl num">10000</span><span class="hl std">, sdOfLampData),</span> <span class="hl kwc">breaks</span> <span class="hl std">=</span> <span class="hl num">50</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+<p>De lampen branden gemiddeld <code class="knitr inline">9799.3333333</code>Dus uit deze dataset lijkt het zo te zijn dat de lampen niet zo lang branden als de fabrikant beloofd. Maar in de grafiek zie je dat het nog niet zo vreemd is dat de steekproef toevallig net onder de beloofde waardes zit.</p>
+
+
+</body>
+</html>

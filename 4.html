@@ -79,20 +79,20 @@
 <p>Kans dat 25 producten goed zijn: <code class="knitr inline">0.3603967</code>
 <p>Kans dat 1 tot en met 5 producten slecht zijn: <code class="knitr inline">0.0332669</code></p>
 <div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl std">test</span> <span class="hl kwb">&lt;-</span> <span class="hl kwa">function</span><span class="hl std">(</span><span class="hl kwc">x</span><span class="hl std">) {</span>
-    <span class="hl kwd">return</span><span class="hl std">(</span><span class="hl num">.04</span> <span class="hl opt">/</span> <span class="hl std">x)</span>
+    <span class="hl kwd">return</span> <span class="hl std">(</span><span class="hl kwd">replicate</span><span class="hl std">(</span>
+      <span class="hl std">x,</span>
+      <span class="hl kwd">sample</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl opt">:</span><span class="hl num">100</span><span class="hl std">,</span> <span class="hl num">1</span><span class="hl std">)</span> <span class="hl opt">&lt;</span> <span class="hl num">4</span>
+    <span class="hl std">))</span>
   <span class="hl std">}</span>
-  <span class="hl kwd">hist</span><span class="hl std">(</span><span class="hl kwd">test</span><span class="hl std">(</span><span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl std">,</span> <span class="hl num">25</span><span class="hl std">,</span> <span class="hl kwc">by</span> <span class="hl std">=</span> <span class="hl num">.1</span><span class="hl std">)),</span> <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">'l'</span><span class="hl std">,</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;producten&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;kans dat stuk&quot;</span><span class="hl std">,</span> <span class="hl kwc">breaks</span> <span class="hl std">=</span> <span class="hl num">50</span><span class="hl std">)</span>
+  <span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwd">test</span><span class="hl std">(</span><span class="hl kwd">seq</span><span class="hl std">(</span><span class="hl num">1</span><span class="hl opt">:</span><span class="hl num">25</span><span class="hl std">)),</span> <span class="hl kwc">type</span> <span class="hl std">=</span> <span class="hl str">'l'</span><span class="hl std">,</span> <span class="hl kwc">xlab</span> <span class="hl std">=</span> <span class="hl str">&quot;producten&quot;</span><span class="hl std">,</span> <span class="hl kwc">ylab</span><span class="hl std">=</span><span class="hl str">&quot;kans dat stuk&quot;</span><span class="hl std">)</span>
 </pre></div>
-<div class="warning"><pre class="knitr r">## Warning in plot.window(xlim, ylim, &quot;&quot;, ...): graphical parameter &quot;type&quot; is
-## obsolete
+<div class="error"><pre class="knitr r">## Error in integer(n): invalid 'length' argument
 </pre></div>
-<div class="warning"><pre class="knitr r">## Warning in title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...):
-## graphical parameter &quot;type&quot; is obsolete
+</div></div>
+  
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r">  <span class="hl kwd">plot</span><span class="hl std">(</span><span class="hl kwd">rpois</span><span class="hl std">(</span><span class="hl num">0</span><span class="hl opt">:</span><span class="hl num">8</span><span class="hl std">,</span> <span class="hl num">15</span><span class="hl std">))</span>
 </pre></div>
-<div class="warning"><pre class="knitr r">## Warning in axis(1, ...): graphical parameter &quot;type&quot; is obsolete
-</pre></div>
-<div class="warning"><pre class="knitr r">## Warning in axis(2, ...): graphical parameter &quot;type&quot; is obsolete
-</pre></div>
-</div><div class="rimage default"><img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div></div>
 </body>
 </html>
+

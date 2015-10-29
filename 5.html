@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>Title</title>
+</head>
+
+<body>
+
+<p>De kans dat er minder dan 495 gram pasta in een pot zit waar gemiddeld 500 gram in zou zitten bij een standaard deviatie van 15: <code class="knitr inline">0.3694413</code></p>
+<p>De kans dat er minder dan 495 gram pasta in een van 25 potten zit waar gemiddeld 500 gram in zou zitten bij een standaard deviatie van 15: <code class="knitr inline">0.0477904</code></p>
+<h2>opdracht 2</h2>
+<p>Volgens de 76/211/EEG richtlijn mag er bij producten van 500 gram een fout zijn van absoluut 7,5 gram.</p>
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">hist</span><span class="hl std">(</span><span class="hl kwd">rnorm</span><span class="hl std">(</span><span class="hl num">10000000</span><span class="hl std">,</span> <span class="hl num">500</span><span class="hl std">,</span> <span class="hl num">3</span><span class="hl std">),</span> <span class="hl kwc">breaks</span> <span class="hl std">=</span> <span class="hl num">50</span><span class="hl std">,</span> <span class="hl kwc">freq</span> <span class="hl std">= F)</span>
+</pre></div>
+</div><div class="rimage default"><img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div></div>
+<p>In het bovenstaande histogram kun je de normale verdeling bij een standaarddeviatie van 3 zien, in dit geval is de kans dat de fout groter is dan 7.5g heel klein is.</p>
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">pnorm</span><span class="hl std">(</span><span class="hl num">475</span><span class="hl std">,</span> <span class="hl num">499.1</span><span class="hl std">,</span> <span class="hl num">15</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.05406375
+</pre></div>
+</div></div>
+<p>de kans dat er de pot minder weegt dan 475 gram(5% afwijking) is bij 499.1 gram: <code class="knitr inline">0.0540638</code> dus bij een standaarddeviatie van 15 mag de machine 499.1 gram in de pot stoppen.</p>
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl kwd">pnorm</span><span class="hl std">(</span><span class="hl num">475</span><span class="hl std">,</span> <span class="hl num">524</span><span class="hl std">,</span> <span class="hl num">30</span><span class="hl std">)</span>
+</pre></div>
+<div class="output"><pre class="knitr r">## [1] 0.05119945
+</pre></div>
+</div></div>
+<p>de kans dat er de pot minder weegt dan 475 gram(5% afwijking) is bij 524 gram: <code class="knitr inline">0.0511995</code> dus bij een standaarddeviatie van 30 mag de machine 524 gram in de pot stoppen.</p>
+<p>De machine heeft dus baat bij een kleinere standaarddeviatie, dat kots minder pasta.</p>
+</body>
+</html>
